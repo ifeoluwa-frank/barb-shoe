@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width-device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <!--added a cdn link by searching font awesome4 cdn and getting this link from https://www.bootstrapcdn.com/fontawesome/ this url*/-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+</head>
+<body>
+  <div class="main-container">
+    <div class ="header">
+      <div class="container">
+        <div class="navbar">
+          <div class="logo">
+            <a href="index.html"><img src="images/logo.png" width="125px"></a>
+          </div>
+          <nav>
+            <ul id="MenuItems">
+              <li><a href="index.html">Home</a></li>
+               <li><a href="products.html">Products</a></li>
+               <li><a href="">About</a></li>
+               <li><a href="">Contact</a></li>
+               <li class="listToHide"><a href="account.html">Account</a></li>
+               <li class="logoutSvg" style="display: none;">Logout <img src="/images/logout.svg" width="15px" height="10px"></li>
+            </ul>
+          </nav>
+          <a href="dashboard.html" ><img src="images/admin.svg" width="30px" height="30px"></a>
+          <img src="images/menu.png" class="menu-icon" onClick="menutoggle()" >
+        </div>
+         
+      </div>
+    </div>
+    <div class="main-dashboard-main">
+      <div class="dashboard-main">
+        <div class="sidebar">
+          <p>Main Menu</p>
+          <hr>
+          <ul>
+            <li onclick="showContent('content1')">Dasboard</li>
+            <li onclick="showContent('content2')">Add Inventory</li>
+            <li onclick="showContent('content3')">Product Tracking</li>
+          </ul>
+        </div>
+
+        <div id="content1" class="dashboard content">
+          <h1 class="dashboard-title">Admin Dashboard</h1>
+          <div class="card sales">
+              <h2>Total Sales</h2>
+              <p id="total-sales">$0</p>
+          </div>
+          <div class="card">
+              <h2>Best Selling Product</h2>
+              <p id="best-selling-product">N/A</p>
+          </div>
+          <div class="card graph">
+            <h2>Sales Per Month</h2>
+            <canvas id="sales-chart"></canvas>
+          </div>
+        </div>
+
+        <div id="content2" class="upload-page content">
+          <div class="form-container-product">
+            <h2>Upload Inventory Page</h2>
+            <p class="response-message"></p>
+            <form id="product-upload" class="product-upload" enctype="multipart/form-data">
+              <Label for="name">Product Title</Label><br>
+              <input name="name" type="text" placeholder="Product Title"><br>
+              
+              <Label for="description">Product Description</Label><br>
+              <textarea name="description" type="text" rows="4" cols="50"></textarea><br>
+              
+              <Label for="price">Product Price</Label><br>
+              <input name="price" type="number" placeholder="Product Price"><br>
+              
+              <Label for="quantity">Product Stock</Label><br>
+              <input name="quantity" type="number" placeholder="Product Stock"><br>
+              
+              <!-- <input type="checkbox" name="color" value="Red">
+              <label for="vehicle1">Red</label><br>
+              <input type="checkbox" name="color" value="Car">
+              <label for="vehicle2">Black</label><br>
+              <input type="checkbox" name="color" value="Boat">
+              <label for="vehicle3">Blue</label><br> -->
+    
+              <label for="color">Available Colors (comma separated)</label><br>
+              <input type="ctext" name="color" placeholder="Red, Green, Black, ..."><br>
+    
+              <label for="color">Available Sizes (comma separated)</label><br>
+              <input type="text" name="size" placeholder="42, 43, 44, ..."><br>
+    
+              <label for="image">Product Image</label><br>
+              <input type="file" id="image" name="image" accept="image/*" onchange="validateImageSize(this)"><br>
+    
+              <button class="btn">Submit</button>
+              
+            </form>
+          </div>
+        </div>
+
+        <div id="content3" class="content">
+          <table id="inventory-list">
+            <tr>
+              <th>Product Name</th>
+              <th>Product Price</th>
+              <th>Product Stock</th>
+              <th>Available Colors</th>
+              <th>Product Size</th>
+              <th>Action</th>
+            </tr>
+
+          </table>
+        </div>
+      </div>
+
+      
+      
+    </div>
+    
+  </div>
+  <script>
+    var menuItems=document.getElementById("MenuItems");
+    
+    MenuItems.style.maxHeight="0px";
+    function menutoggle(){
+        if(MenuItems.style.maxHeight == "0px"){
+            MenuItems.style.maxHeight="200px";
+        }
+        else{
+            MenuItems.style.maxHeight="0px";
+        }
+    }
+  </script>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src="js/dashboard.js"></script>
+   <script src="js/index.js"></script>
+</body>
+</html>
