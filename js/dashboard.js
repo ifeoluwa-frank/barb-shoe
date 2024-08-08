@@ -91,7 +91,7 @@ document.getElementById('product-upload').addEventListener('submit', async (e) =
 
     console.log(formData);
 
-    const response = await fetch('https://shopmo.ng/public/api/addProduct', {
+    const response = await fetch('https://shopmo.ng/api/addProduct', {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -132,7 +132,7 @@ function validateImageSize(input) {
 
 document.addEventListener('DOMContentLoaded', async () => {
     const inventoryTable = document.getElementById('inventory-list')
-    const response = await fetch('https://shopmo.ng/public/api/inventory', {
+    const response = await fetch('https://shopmo.ng/api/inventory', {
         method: 'GET'
     });
 

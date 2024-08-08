@@ -5,7 +5,7 @@ async function register(event) {
     const form = event.target;
     const formData = new FormData(form);
 
-    const response = await fetch('https://shopmo.ng/public/api/register', {
+    const response = await fetch('https://shopmo.ng/api/register', {
         method: 'POST',
         body: formData
     });
@@ -46,7 +46,7 @@ document.getElementById('LoginForm').addEventListener('submit', async (e) => {
     const form = e.target;
     const formData = new FormData(form);
 
-    const response = await fetch('https://shopmo.ng/public/api/login', {
+    const response = await fetch('https://shopmo.ng/api/login', {
         method: 'POST',
         body: formData
     });
