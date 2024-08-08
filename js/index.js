@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const url = document.querySelector('.cartToAdmin');
             const imgUrl = document.querySelector('.imgChange');
 
-            url.setAttribute('href', '/dashboard.html');
+            url.setAttribute('href', './dashboard.html');
             imgUrl.setAttribute('src', './images/admin.svg');
         }
        
