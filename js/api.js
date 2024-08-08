@@ -62,7 +62,7 @@ document.getElementById('LoginForm').addEventListener('submit', async (e) => {
         localStorage.setItem('user_details', JSON.stringify(body.user));
         localStorage.setItem('user_role', body.user.role)
         // console.log(body.user.role);
-        window.location.href = '/index.html'
+        window.location.href = './index.html'
     }
 
     if(!body.status){

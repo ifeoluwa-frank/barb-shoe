@@ -30,5 +30,5 @@ logoutSvg.addEventListener('click', () => {
     // e.preventDefault();
     localStorage.removeItem('access_token');
     localStorage.removeItem('user_details');
-    window.location.href = '/index.html'
+    window.location.href = './index.html'
 });
