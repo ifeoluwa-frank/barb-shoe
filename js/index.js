@@ -23,12 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
        
     }
-    console.log(userString);
+   // console.log(userString);
 });
 
 logoutSvg.addEventListener('click', () => {
     // e.preventDefault();
     localStorage.removeItem('access_token');
     localStorage.removeItem('user_details');
+    localStorage.removeItem('user_role');
+    localStorage.removeItem('user_id');
     window.location.href = './index.html'
 });

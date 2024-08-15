@@ -40,13 +40,13 @@
         <!------------------------------ cart items details------------------------------>
 
         <div class="small-container cart-page">
-        <table>
+        <table class="cart-item-table">
             <tr>
                 <th>Product</th>
                 <th>Quantity</th>
                 <th>Subtotal</th>
             </tr>
-            <tr>
+             <!-- <tr>
                 <td>
                     <div class="cart-info">
                         <img src="images/buy-1.jpg">
@@ -87,22 +87,22 @@
                 </td>
                 <td><input type="number" vlaue="1"></td>
                 <td>$50.00</td>
-            </tr>
+            </tr>  -->
             </table>
             
             <div class="total-price">
                 <table>
                     <tr>
                         <td>Subtotal</td>
-                        <td>$200.00</td>
+                        <td class="sub-total-price"></td>
                     </tr>
                     <tr>
-                        <td>Tax</td>
-                        <td>$35.00</td>
+                        <td>Vat</td>
+                        <td class="vat">$35.00</td>
                     </tr>
                     <tr>
                         <td>Total</td>
-                        <td>$230.00</td>
+                        <td class="final-total">$230.00</td>
                     </tr>
                 </table>
             </div>
@@ -170,5 +170,6 @@
             }
         </script>
      <script src="js/index.js"></script>
+     <script src="js/cart.js"></script>
     </body>
 </html>

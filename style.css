@@ -682,5 +682,19 @@ form a{
 
 }
 
+.btn-action {
+    padding: 4px;
+    margin-right: 4px;
+    background-color: #ff523b;
+    border: none;
+    border-radius: 18%;
+    color: #fff;
+}
+
+.btn-action:hover{
+    background-color: #e88375;
+    cursor: pointer;
+}
+
 /* DASHBOARD FORM */
 

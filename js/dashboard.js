@@ -91,7 +91,16 @@ document.getElementById('product-upload').addEventListener('submit', async (e) =
 
     console.log(formData);
 
-    const response = await fetch('https://shopmo.ng/api/addProduct', {
+    let url;
+
+    const id = formData.get("id");
+    if(id){
+        url = `https://shopmo.ng/api/updateProduct/${id}`
+    } else {
+        url = 'https://shopmo.ng/api/addProduct';
+    }
+    
+    const response = await fetch(url, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -137,7 +146,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     const body = await response.json();
-    console.log(body);
+    // console.log(body);
 
     body.forEach(inventory => {
         const tableRow = document.createElement('tr');
@@ -162,7 +171,73 @@ document.addEventListener('DOMContentLoaded', async () => {
         tdInventorySize.textContent = inventory.size;
         tableRow.appendChild(tdInventorySize);
 
-        inventoryTable.appendChild(tableRow);
-    })
+        const tdAction = document.createElement('td');
+        const editButton = document.createElement('button');
+        const deleteButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        deleteButton.textContent = 'delete';
+        editButton.classList.add('btn-action');
+        deleteButton.classList.add('btn-action');
+        editButton.classList.add('btn-edit');
+        deleteButton.classList.add('btn-delete');
+        tdAction.appendChild(editButton);
+        tdAction.appendChild(deleteButton);
+        tableRow.appendChild(tdAction);
 
-})
+        inventoryTable.appendChild(tableRow);
+
+        deleteButton.addEventListener('click', async () => {
+            // e.preventDefault();
+
+            const body = await fetch(`https://shopmo.ng/api/deleteProduct/${inventory.id}`, {
+                method: 'DELETE'
+            });
+            const response = await body.json();
+            console.log(response);
+
+            alert(`Product ${inventory.name} has been successfuly deleted`);
+            window.location.reload();
+        });
+
+        editButton.addEventListener('click', () => {
+
+            // CHANGE TO ADD INVENTORY VIEW OF THE DASHBOARD
+            showContent('content2');
+
+            // POPULATE THE FORM WITH THE DETAILS OF THE PRODUCT TO EDIT
+            formName.value = inventory.name;
+            formDescription.value = inventory.description;
+            formPrice.value = inventory.price;
+            formStock.value = inventory.quantity;
+            formColor.value = inventory.color;
+            formSize.value = inventory.size;
+            formId.value = inventory.id;
+            formBtn.textContent = 'Update';
+
+            // UPDATE PRODUCT
+            // formAction.addEventListener('submit', async (e) => {
+            //     e.preventDefault();
+            //     const form = e.target;
+            //     const formData = new FormData(form);
+
+            //     const response = await fetch(`http://127.0.0.1:8000/api/updateProduct/${inventory.id}`, {
+            //         method: 'POST',
+            //         body: formData
+            //     });
+
+            //     const body = await response.json();
+            //     console.log(body);
+            // });
+        });
+    });
+});
+
+const formName = document.querySelector('.form-product-name');
+const formDescription = document.querySelector('.form-product-description');
+const formPrice = document.querySelector('.form-product-price');
+const formStock = document.querySelector('.form-product-stock');
+const formColor = document.querySelector('.form-product-color');
+const formSize = document.querySelector('.form-product-size');
+const formId = document.querySelector('.form-product-id');
+const formBtn = document.querySelector('.form-product-btn');
+const formAction = document.querySelector('.product-upload');

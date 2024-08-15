@@ -68,17 +68,19 @@
             <h2>Upload Inventory Page</h2>
             <p class="response-message"></p>
             <form id="product-upload" class="product-upload" enctype="multipart/form-data">
+              <input name="id" type="text" class="form-product-id" hidden/>
+
               <Label for="name">Product Title</Label><br>
-              <input name="name" type="text" placeholder="Product Title"><br>
+              <input name="name" type="text" placeholder="Product Title" class="form-product-name"><br>
               
               <Label for="description">Product Description</Label><br>
-              <textarea name="description" type="text" rows="4" cols="50"></textarea><br>
+              <textarea name="description" type="text" rows="4" cols="50" class="form-product-description"></textarea><br>
               
               <Label for="price">Product Price</Label><br>
-              <input name="price" type="number" placeholder="Product Price"><br>
+              <input name="price" type="number" placeholder="Product Price" class="form-product-price"><br>
               
               <Label for="quantity">Product Stock</Label><br>
-              <input name="quantity" type="number" placeholder="Product Stock"><br>
+              <input name="quantity" type="number" placeholder="Product Stock" class="form-product-stock"><br>
               
               <!-- <input type="checkbox" name="color" value="Red">
               <label for="vehicle1">Red</label><br>
@@ -88,15 +90,15 @@
               <label for="vehicle3">Blue</label><br> -->
     
               <label for="color">Available Colors (comma separated)</label><br>
-              <input type="ctext" name="color" placeholder="Red, Green, Black, ..."><br>
+              <input type="ctext" name="color" placeholder="Red, Green, Black, ..." class="form-product-color"><br>
     
               <label for="color">Available Sizes (comma separated)</label><br>
-              <input type="text" name="size" placeholder="42, 43, 44, ..."><br>
+              <input type="text" name="size" placeholder="42, 43, 44, ..." class="form-product-size"><br>
     
               <label for="image">Product Image</label><br>
-              <input type="file" id="image" name="image" accept="image/*" onchange="validateImageSize(this)"><br>
+              <input type="file" id="image" name="image" accept="image/*" onchange="validateImageSize(this)" class="form-product-image"><br>
     
-              <button class="btn">Submit</button>
+              <button class="btn form-product-btn">Submit</button>
               
             </form>
           </div>

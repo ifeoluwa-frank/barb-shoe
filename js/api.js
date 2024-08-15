@@ -41,7 +41,7 @@ async function register(event) {
 
 document.getElementById('LoginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    console.log(e);
+    //console.log(e);
 
     const form = e.target;
     const formData = new FormData(form);
@@ -60,7 +60,8 @@ document.getElementById('LoginForm').addEventListener('submit', async (e) => {
         localStorage.setItem('access_token', body.token);
 
         localStorage.setItem('user_details', JSON.stringify(body.user));
-        localStorage.setItem('user_role', body.user.role)
+        localStorage.setItem('user_role', body.user.role);
+        localStorage.setItem('user_id', body.user.id);
         // console.log(body.user.role);
         window.location.href = './index.html'
     }
