@@ -5,14 +5,13 @@ async function register(event) {
     const form = event.target;
     const formData = new FormData(form);
 
-    const response = await fetch('https://shopmo.ng/api/register', {
+    // let url = 'http://127.0.0.1:8000/api/register';
+    let url = 'https://shopmo.ng/api/register';
+
+    const response = await fetch(url, {
         method: 'POST',
         body: formData
     });
-
-    // console.log(typeof(response));
-    // console.log(response);
-    // return;
 
     const body = await response.json();
     //console.log(typeof(body.errors));
@@ -21,18 +20,6 @@ async function register(event) {
         let errorMsg = body.errors[Object.keys(body.errors)[0]];
         document.querySelector('.errorMsg').innerHTML = errorMsg;
     }
-
-    // const responseObject = JSON.parse(body);
-
-    // if(responseObject.errors){
-    //     const responseArray = responseObject.errors;
-    //     // console.log(responseArray.email[0])
-    //     document.querySelector('.errorMsg').innerHTML = responseArray.email[0];
-    // }
-
-    // if(!responseObject.errors){
-    //     // window.location.href = '/login.html'
-    // }
 }
 
 
@@ -46,7 +33,10 @@ document.getElementById('LoginForm').addEventListener('submit', async (e) => {
     const form = e.target;
     const formData = new FormData(form);
 
-    const response = await fetch('https://shopmo.ng/api/login', {
+    // let url = 'http://127.0.0.1:8000/api/login';
+    let url = 'https://shopmo.ng/api/login';
+
+    const response = await fetch(url, {
         method: 'POST',
         body: formData
     });

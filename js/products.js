@@ -1,7 +1,11 @@
 
 document.addEventListener('DOMContentLoaded', async  () => {
-    const inventoryListDiv = document.getElementById('product-list-div')
-    const response = await fetch('https://shopmo.ng/api/inventory', {
+    const inventoryListDiv = document.getElementById('product-list-div');
+
+    let url = 'https://shopmo.ng/api/inventory';
+    // let url = 'http://127.0.0.1:8000/api/inventory';
+
+    const response = await fetch(url, {
         method: 'GET'
     });
 
@@ -30,8 +34,6 @@ document.addEventListener('DOMContentLoaded', async  () => {
         productDiv.appendChild(productPrice);
 
         inventoryListDiv.appendChild(productDiv);
-
-        
 
         //console.log(productImg.src);
     })

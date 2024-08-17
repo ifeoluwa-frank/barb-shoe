@@ -95,9 +95,11 @@ document.getElementById('product-upload').addEventListener('submit', async (e) =
 
     const id = formData.get("id");
     if(id){
-        url = `https://shopmo.ng/api/updateProduct/${id}`
+        url = `https://shopmo.ng/api/updateProduct/${id}`;
+        // url = `http://127.0.0.1:8000/api/updateProduct/${id}`;
     } else {
         url = 'https://shopmo.ng/api/addProduct';
+        // url = 'http://127.0.0.1:8000/api/addProduct';
     }
     
     const response = await fetch(url, {
@@ -141,7 +143,9 @@ function validateImageSize(input) {
 
 document.addEventListener('DOMContentLoaded', async () => {
     const inventoryTable = document.getElementById('inventory-list')
-    const response = await fetch('https://shopmo.ng/api/inventory', {
+    // let url = 'http://127.0.0.1:8000/api/inventory';
+    let url = 'https://shopmo.ng/api/inventory'
+    const response = await fetch(url, {
         method: 'GET'
     });
 
@@ -188,8 +192,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         deleteButton.addEventListener('click', async () => {
             // e.preventDefault();
-
-            const body = await fetch(`https://shopmo.ng/api/deleteProduct/${inventory.id}`, {
+            // let curl = `http://127.0.0.1:8000/api/api/deleteProduct/${inventory.id}`;
+            let curl = `https://shopmo.ng/api/deleteProduct/${inventory.id}`;
+            const body = await fetch(curl, {
                 method: 'DELETE'
             });
             const response = await body.json();
@@ -213,21 +218,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             formSize.value = inventory.size;
             formId.value = inventory.id;
             formBtn.textContent = 'Update';
-
-            // UPDATE PRODUCT
-            // formAction.addEventListener('submit', async (e) => {
-            //     e.preventDefault();
-            //     const form = e.target;
-            //     const formData = new FormData(form);
-
-            //     const response = await fetch(`http://127.0.0.1:8000/api/updateProduct/${inventory.id}`, {
-            //         method: 'POST',
-            //         body: formData
-            //     });
-
-            //     const body = await response.json();
-            //     console.log(body);
-            // });
+ 
         });
     });
 });

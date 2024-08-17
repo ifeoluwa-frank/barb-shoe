@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const productId = new URLSearchParams(window.location.search).get('id');
     //console.log(productId);
 
-    const body = await fetch(`https://shopmo.ng/api/getProduct/${productId}`, {
+    let url = `https://shopmo.ng/api/getProduct/${productId}`;
+    // let url = `http://127.0.0.1:8000/api/getProduct/${productId}`;
+    const body = await fetch(url, {
         method: 'GET'
     });
 
@@ -82,9 +84,35 @@ document.addEventListener('DOMContentLoaded', async () => {
     cartAnchor.style.pointer = "cursor";
     productInfoDiv.appendChild(cartAnchor);
 
-    cartAnchor.addEventListener('click', (e) => {
+    cartAnchor.addEventListener('click', async (e) => {
         e.preventDefault();
+        const userId = localStorage.getItem('user_id');
 
-    })
+        let apiBody = new FormData();
+        apiBody.append("user_id", userId);
+        apiBody.append("product_id", product.id);
+        apiBody.append("quantity", quantityInput.value);
+
+        // let curl = 'http://127.0.0.1:8000/api/addCartItems';
+        let curl = 'https://shopmo.ng/api/addCartItems';
+
+        // console.log(apiBody);
+
+        // for (var pair of apiBody.entries()) {
+        //     console.log(pair[0] + " - " + pair[1]);
+        // }
+
+        const body = await fetch(curl, {
+            method: 'POST',
+            body: apiBody
+        });
+
+        const response = await body.json();
+        console.log(response);
+        if(response.status){
+            alert(response.message);
+            window.location.href = 'cart.html';
+        }
+    });
 
 });

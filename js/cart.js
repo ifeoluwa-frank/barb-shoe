@@ -1,13 +1,16 @@
 document.addEventListener('DOMContentLoaded', async () =>{
     const currentLoggedInUserId = localStorage.getItem('user_id');
     //console.log(currentLoggedInUserId);
-    const response = await fetch(`https://shopmo.ng/api/cartItems/${currentLoggedInUserId}`,{
+    // let url = `http://127.0.0.1:8000/api/cartItems/${currentLoggedInUserId}`;
+    let url = `https://shopmo.ng/api/cartItems/${currentLoggedInUserId}`;
+
+    const response = await fetch(url, {
         method: 'GET'
     });
 
     const body = await response.json();
-    console.log(body);
-    console.log(body[0].cartItemProduct);
+    // console.log(body);
+    // console.log(body[0].cartItemProduct);
 
     const cartItemTable = document.querySelector('.cart-item-table');
 
@@ -51,15 +54,14 @@ document.addEventListener('DOMContentLoaded', async () =>{
 
         const tableDataInput = document.createElement('input');
         tableDataInput.type = 'number';
-        tableDataInput.value = cartItem.cartItemProduct.quantity;
+        tableDataInput.value = cartItem.cartItem.quantity;
         tableData2.appendChild(tableDataInput);
 
         const tableData3 = document.createElement('td');
-        tableData3.textContent = "₦" + cartItem.cartItemProduct.price;
+        let amount = Number(cartItem.cartItemProduct.price) * Number(cartItem.cartItem.quantity);
+        tableData3.textContent = "₦" + amount;
         tableRow.appendChild(tableData3);
 
-        
-        //totalPrice.push(cartItem.cartItemProduct.price);
     });
 
     // const totalPrice = [];
@@ -72,7 +74,7 @@ document.addEventListener('DOMContentLoaded', async () =>{
     let price = 0;
     body.forEach(item => {
         // const id = item.cartItem.id;
-        price += Number(item.cartItemProduct.price);
+        price = price + (Number(item.cartItemProduct.price) * Number(item.cartItem.quantity));
     });
     subTotal.textContent = "₦" + price.toFixed(2);
 
